@@ -2,6 +2,7 @@
 using Core.Application.Contracts.Features.Hotel.Queries.Get;
 using Core.Application.Contracts.Features.Hotel.Queries.GetAll;
 using Core.Application.Contracts.Features.Room.Queries.Get;
+using Core.Application.Contracts.Features.RoomType.Queries.Get;
 using Core.Application.Extensions;
 using Core.Application.Features.Hotel.Queries.GetAll;
 using Core.Domain.Persistence.Contracts;
@@ -57,6 +58,9 @@ namespace Core.Application.Features.Hotel.Queries.Get
                         s.Features
                     }).FirstOrDefault();
                 #endregion
+
+                if (hotelData == null)
+                    return Response<GetHotelQueryVm>.Fail("No data found");
 
                 #region response
                 var response = new GetHotelQueryVm

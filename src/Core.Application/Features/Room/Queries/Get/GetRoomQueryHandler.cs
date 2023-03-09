@@ -1,4 +1,5 @@
 ﻿using Core.Application.Contracts.Common;
+using Core.Application.Contracts.Features.Hotel.Queries.Get;
 using Core.Application.Contracts.Features.Room.Queries.Get;
 using Core.Application.Extensions;
 using Core.Domain.Persistence.Contracts;
@@ -47,6 +48,9 @@ namespace Core.Application.Features.Room.Queries.Get
                         s.RoomNumber
                     }).FirstOrDefault();
                 #endregion
+
+                if (roomData == null)
+                    return Response<GetRoomQueryVm>.Fail("No data found");
 
                 #region Response
                 var response = new GetRoomQueryVm

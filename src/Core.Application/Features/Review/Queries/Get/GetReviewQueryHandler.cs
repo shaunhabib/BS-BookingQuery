@@ -2,6 +2,7 @@
 using Core.Application.Contracts.Features.Booking.Queries.Get;
 using Core.Application.Contracts.Features.Review.Queries.Get;
 using Core.Application.Contracts.Features.Review.Queries.GetAll;
+using Core.Application.Contracts.Features.Room.Queries.Get;
 using Core.Application.Extensions;
 using Core.Application.Features.Review.Queries.GetAll;
 using Core.Domain.Persistence.Contracts;
@@ -49,6 +50,9 @@ namespace Core.Application.Features.Review.Queries.Get
                         s.Comment
                     }).FirstOrDefault();
                 #endregion
+
+                if (reviewData == null)
+                    return Response<GetReviewQueryVm>.Fail("No data found");
 
                 #region Response
                 var response =  new GetReviewQueryVm
